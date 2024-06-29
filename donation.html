@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Donation Page</title>
+    <style>
+        /* Style the donation form */
+        
+        .donation-form {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .donation-form input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+        
+        .donation-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .donation-form input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        /* Style the donation received section */
+        
+        .donation-received {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .donation-received h2 {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .donation-received ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .donation-received li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Donation Page</h1>
+    <form class="donation-form" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="amount">Donation Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <input type="submit" value="Make Donation">
+    </form>
+    <div class="donation-received" style="display:none;">
+        <h2>Donations Received:</h2>
+        <ul id="donation-list">
+            <!-- Donations will be listed here -->
+        </ul>
+    </div>
+    <script>
+        // Form validation function
+        function validateForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const amount = document.getElementById("amount").value;
+
+            if (name === "" || email === "" || amount === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // Function to display donations received
+        function displayDonations(name, amount) {
+            const donationList = document.getElementById("donation-list");
+            const donationReceived = document.querySelector(".donation-received");
+            donationReceived.style.display = "block";
+            const listItem = document.createElement("li");
+            listItem.textContent = $ {
+                name
+            } - $$ {
+                amount
+            };
+            donationList.appendChild(listItem);
+        }
+
+        // Call the displayDonations function when the form is submitted
+        document.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const amount = document.getElementById("amount").value;
+            displayDonations(name, amount);
+        });
+    </script>
+</body>
+
+</html>
